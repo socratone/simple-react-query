@@ -1,22 +1,28 @@
 import styled from 'styled-components';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import BasicId from './pages/Basic/Id';
 import Basic from './pages/Basic';
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <Router>
-      <Container>
-        <Nav>
-          <Link to="/basic">Basic</Link>
-        </Nav>
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <Container>
+          <Nav>
+            <Link to="/basic">Basic</Link>
+          </Nav>
 
-        <Switch>
-          <Route path="/basic">
-            <Basic />
-          </Route>
-        </Switch>
-      </Container>
-    </Router>
+          <Switch>
+            <Route path="/basic/:id" component={BasicId} />
+            <Route path="/basic" component={Basic} />
+            <Route path="/" component={Basic} />
+          </Switch>
+        </Container>
+      </Router>
+    </QueryClientProvider>
   );
 }
 
