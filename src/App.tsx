@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import BasicId from './pages/Basic/Id';
 import Basic from './pages/Basic';
 
@@ -22,6 +23,7 @@ function App() {
           </Switch>
         </Container>
       </Router>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }
