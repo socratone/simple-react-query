@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import BasicId from './pages/Basic/Id';
 import Basic from './pages/Basic';
+import Cache from './pages/Cache';
 
 const queryClient = new QueryClient();
 
@@ -14,11 +15,13 @@ function App() {
         <Container>
           <Nav>
             <Link to="/basic">Basic</Link>
+            <Link to="/cache">Cache</Link>
           </Nav>
 
           <Switch>
             <Route path="/basic/:id" component={BasicId} />
             <Route path="/basic" component={Basic} />
+            <Route path="/cache" component={Cache} />
             <Route path="/" component={Basic} />
           </Switch>
         </Container>

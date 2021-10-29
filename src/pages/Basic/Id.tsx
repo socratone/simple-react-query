@@ -1,19 +1,25 @@
 import { useQuery } from 'react-query';
-import { useRouteMatch } from 'react-router';
-import styled from 'styled-components';
+import { useHistory, useRouteMatch } from 'react-router';
 import { getUser } from '../../api/get';
+import { Button, Container } from '../../components/styledComponents';
 
 const BasicId = () => {
+  const history = useHistory();
   const match = useRouteMatch<{ id: string }>();
   const id = Number(match.params.id);
 
   const { data } = useQuery(['user', id], () => getUser(id));
 
-  return <Container>{data?.name}</Container>;
-};
+  const handleClick = () => history.goBack();
 
-const Container = styled.div`
-  padding: 20px;
-`;
+  return (
+    <Container>
+      <Button onClick={handleClick} style={{ marginBottom: '10px' }}>
+        Back
+      </Button>
+      <div>{data?.name}</div>
+    </Container>
+  );
+};
 
 export default BasicId;
